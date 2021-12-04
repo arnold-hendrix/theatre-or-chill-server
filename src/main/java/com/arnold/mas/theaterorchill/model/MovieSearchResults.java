@@ -1,6 +1,6 @@
 // Defines the POJO that maps to the json returned from the api calls for now playing and upcoming movies.
 
-package com.arnold.mas.theatreorchill.model;
+package com.arnold.mas.theaterorchill.model;
 
 import java.util.List;
 import java.util.Map;

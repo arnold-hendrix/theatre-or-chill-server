@@ -1,10 +1,10 @@
 // manages access and updates to User persistence.
 
-package com.arnold.mas.theatreorchill.service;
+package com.arnold.mas.theaterorchill.service;
 
-import com.arnold.mas.theatreorchill.exceptions.UserNotFoundException;
-import com.arnold.mas.theatreorchill.model.User;
-import com.arnold.mas.theatreorchill.repos.UserRepository;
+import com.arnold.mas.theaterorchill.exceptions.UserNotFoundException;
+import com.arnold.mas.theaterorchill.model.User;
+import com.arnold.mas.theaterorchill.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

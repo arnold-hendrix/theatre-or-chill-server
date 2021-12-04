@@ -1,11 +1,11 @@
 // Movie controller class provides functions to retrieve now playing and upcoming movies from moviedb api via rest.
 
-package com.arnold.mas.theatreorchill.controller;
+package com.arnold.mas.theaterorchill.controller;
 
-import com.arnold.mas.theatreorchill.model.Movie;
-import com.arnold.mas.theatreorchill.model.MovieKey;
-import com.arnold.mas.theatreorchill.model.MovieKeyResults;
-import com.arnold.mas.theatreorchill.model.MovieSearchResults;
+import com.arnold.mas.theaterorchill.model.Movie;
+import com.arnold.mas.theaterorchill.model.MovieKey;
+import com.arnold.mas.theaterorchill.model.MovieKeyResults;
+import com.arnold.mas.theaterorchill.model.MovieSearchResults;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +28,7 @@ import java.util.Map;
 @RequestMapping("movies")
 public class MovieController {
     private final static String apiKey="dfbbb74a5de37d0033bd0ea63eb42865";
+//    private String apiKey;
     private final static String language = "en-US";
     private final static String region = "CA";
     private final static String movieUrl="https://api.themoviedb.org/3/movie/";

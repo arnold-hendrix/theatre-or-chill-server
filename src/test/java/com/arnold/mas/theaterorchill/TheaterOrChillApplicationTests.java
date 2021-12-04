@@ -1,10 +1,10 @@
-package com.arnold.mas.theatreorchill;
+package com.arnold.mas.theaterorchill;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TheatreOrChillApplicationTests {
+class TheaterOrChillApplicationTests {
 
 	@Test
 	void contextLoads() {

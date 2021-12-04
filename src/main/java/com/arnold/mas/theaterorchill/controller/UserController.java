@@ -1,9 +1,9 @@
 // returns and updates server-side user information using RestController.
 
-package com.arnold.mas.theatreorchill.controller;
+package com.arnold.mas.theaterorchill.controller;
 
-import com.arnold.mas.theatreorchill.model.User;
-import com.arnold.mas.theatreorchill.service.UserService;
+import com.arnold.mas.theaterorchill.model.User;
+import com.arnold.mas.theaterorchill.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

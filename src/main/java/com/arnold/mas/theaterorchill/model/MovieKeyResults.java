@@ -1,6 +1,6 @@
 // Defines the POJO that maps to the json returned from the MovieKey api call.
 
-package com.arnold.mas.theatreorchill.model;
+package com.arnold.mas.theaterorchill.model;
 
 import java.util.List;
 

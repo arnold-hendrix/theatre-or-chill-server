@@ -1,6 +1,6 @@
 // Defines user object properties.
 
-package com.arnold.mas.theatreorchill.model;
+package com.arnold.mas.theaterorchill.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String email;
-    private int theatreRewards = 500;
+    private int theaterRewards = 500;
 
     public User() {}
 
@@ -76,12 +76,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public int getTheatreRewards() {
-        return theatreRewards;
+    public int getTheaterRewards() {
+        return theaterRewards;
     }
 
-    public void setTheatreRewards(int tocRewards) {
-        this.theatreRewards = tocRewards;
+    public void setTheaterRewards(int tocRewards) {
+        this.theaterRewards = tocRewards;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", tocRewards=" + theatreRewards +
+                ", theaterRewards=" + theaterRewards +
                 '}';
     }
 

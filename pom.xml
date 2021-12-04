@@ -11,7 +11,7 @@
 	<groupId>com.arnold.mas</groupId>
 	<artifactId>theatre-or-chill</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>theatre-or-chill</name>
+	<name>theater-or-chill</name>
 	<description>movie streaming and ticketing application</description>
 	<properties>
 		<java.version>17</java.version>

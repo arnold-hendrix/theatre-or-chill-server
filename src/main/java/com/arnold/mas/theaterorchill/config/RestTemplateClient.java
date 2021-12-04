@@ -1,6 +1,6 @@
 // RestTemplate bean config class.
 
-package com.arnold.mas.theatreorchill.config;
+package com.arnold.mas.theaterorchill.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

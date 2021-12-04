@@ -1,6 +1,6 @@
 // Defines the MovieKey type representing the YouTube key for a movie trailer url.
 
-package com.arnold.mas.theatreorchill.model;
+package com.arnold.mas.theaterorchill.model;
 
 import com.google.gson.annotations.SerializedName;
 
