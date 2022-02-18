@@ -1,7 +1,8 @@
-// Movie controller class provides functions to retrieve now playing and upcoming movies from moviedb api via rest.
+// Movie controller class provides functions to retrieve now playing and upcoming movies from movieDB api via rest.
 
 package com.arnold.mas.theaterorchill.controller;
 
+import com.arnold.mas.theaterorchill.config.AppProperties;
 import com.arnold.mas.theaterorchill.model.Movie;
 import com.arnold.mas.theaterorchill.model.MovieKey;
 import com.arnold.mas.theaterorchill.model.MovieKeyResults;
@@ -11,10 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,42 +20,39 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//
 @RestController
 @CrossOrigin
 @RequestMapping("movies")
 public class MovieController {
-    private final static String apiKey="dfbbb74a5de37d0033bd0ea63eb42865";
-//    private String apiKey;
-    private final static String language = "en-US";
-    private final static String region = "CA";
-    private final static String movieUrl="https://api.themoviedb.org/3/movie/";
-    private final static String nowPlayingUrl="https://api.themoviedb.org/3/movie/now_playing";
-    private final static String upcomingUrl="https://api.themoviedb.org/3/movie/upcoming";
-
+    private final String language = "en-US";
 
     private final RestTemplate restTemplate;
     private final HttpHeaders headers  = new HttpHeaders();
     private final HttpEntity<String> entity = new HttpEntity<>(headers);
     private final Gson gson;
+    private final AppProperties appProperties;
 
     private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
 
     @Autowired
-    public MovieController(RestTemplate restTemplate, Gson gson) {
+    public MovieController(RestTemplate restTemplate, Gson gson, AppProperties appProperties) {
         this.restTemplate = restTemplate;
         this.gson = gson;
         this.headers.set("User-Agent", "theatre-or-chill");
+        this.appProperties = appProperties;
 
-    } // constructor autowiring for RestTemplate and Gson dependencies.
+    } // constructor autowiring for RestTemplate and Gson dependencies, as well as, AppProperties class.
 
     @GetMapping("/nowPlaying")  // returns a response entity containing a list of movies currently showing in theatres.
     public ResponseEntity<List<Movie>> getNowPlayingMovies() {
+        String nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing";
         return getListResponseEntity(nowPlayingUrl);
     }
 
     @GetMapping("/upcoming")  // returns a response entity containing a list of upcoming movies in theatres.
     public ResponseEntity<List<Movie>> getUpcomingMovies(){
+        String upcomingUrl = "https://api.themoviedb.org/3/movie/upcoming";
         return getListResponseEntity(upcomingUrl);
     }
 
@@ -66,7 +61,7 @@ public class MovieController {
         UriComponents builder = getUriBuilder(movieUrl);
         // string url and accompanying query params constructed using UriComponents builder.
         ResponseEntity<String> responseEntity = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
-        // restTamplate.exchange is used to call moviedb api and return a response entity of type String.
+        // restTemplate.exchange is used to call movieDB api and return a response entity of type String.
         MovieSearchResults movieSearchResults = gson.fromJson(responseEntity.getBody(), MovieSearchResults.class);
         // gson is used to deserialize and map the returned json into the MovieSearchResults POJO class.
         List<Movie> movies = movieSearchResults.getResults();
@@ -79,10 +74,11 @@ public class MovieController {
     void getMovieKey(List<Movie> movies){  // retrieves the video trailer for each movie using the movie id property as
         // a path variable.
         for(Movie movie: movies) {
+            String movieUrl = "https://api.themoviedb.org/3/movie/";
             UriComponents builder = UriComponentsBuilder.fromHttpUrl(movieUrl)
                     .pathSegment("{movie_id}")
                     .pathSegment("videos")
-                    .queryParam("api_key", apiKey)
+                    .queryParam("api_key", appProperties.getApiKey("apiKey"))
                     .queryParam("language", language).build();
             Map<String, Integer> uriVariables = new HashMap<>();
             uriVariables.put("movie_id", movie.getId());
@@ -100,8 +96,9 @@ public class MovieController {
     }
 
     UriComponents getUriBuilder(String url) {
+        String region = "CA";
         return UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("api_key", apiKey)
+                .queryParam("api_key", appProperties.getApiKey("apiKey"))
                 .queryParam("language", language)
                 .queryParam("region", region).build();
     }
