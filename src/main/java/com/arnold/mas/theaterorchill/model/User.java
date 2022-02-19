@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "toc_users")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
