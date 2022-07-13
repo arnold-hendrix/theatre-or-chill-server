@@ -1,18 +1,16 @@
-// Defines the POJO that maps to the json returned from the api calls for now playing and upcoming movies.
-
 package com.arnold.mas.theaterorchill.model;
 
 import java.util.List;
 import java.util.Map;
 
-public class MovieSearchResults {
+public class MovieResults {
     private Map<String, String> dates;
     private int page;
     private List<Movie> results;
     private int total_pages;
     private int total_results;
 
-    public MovieSearchResults() {
+    public MovieResults() {
     }
 
     public Map<String, String> getDates() {
@@ -57,7 +55,7 @@ public class MovieSearchResults {
 
     @Override
     public String toString() {
-        return "MovieSearchResults{" +
+        return "MovieResults{" +
                 "dates=" + dates +
                 ", page=" + page +
                 ", results=" + results +

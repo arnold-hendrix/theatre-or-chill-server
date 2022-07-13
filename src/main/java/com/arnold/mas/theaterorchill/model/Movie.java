@@ -1,5 +1,3 @@
-// Defines the Movie object type to be mapped from the json returned by moviedb api.
-
 package com.arnold.mas.theaterorchill.model;
 
 import com.google.gson.annotations.SerializedName;
